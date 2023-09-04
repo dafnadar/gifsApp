@@ -1,1 +1,8 @@
-<p>login-page works!</p>
+<h1>Login</h1>
+<app-form (onSubmitEvent)="onSubmit($event)"></app-form>
+
+<div>{{errMessage}}</div>
+
+<div>
+    didnt sign...<a href="/signup">signup</a>
+</div>
