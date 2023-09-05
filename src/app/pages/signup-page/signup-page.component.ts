@@ -11,7 +11,6 @@ import { UserService } from 'src/app/services/user.service';
 export class SignupPageComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { 
-
   }
 
   ngOnInit(): void {
@@ -22,6 +21,5 @@ export class SignupPageComponent implements OnInit {
     this.userService.addUser(user);
     this.router.navigateByUrl(`${user.id}`);
   }
-
   
 }

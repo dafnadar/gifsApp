@@ -9,6 +9,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
+import {HttpClientModule} from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FormComponent } from './components/form/form.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    NgxPaginationModule       
   ],
   providers: [],
   bootstrap: [AppComponent]

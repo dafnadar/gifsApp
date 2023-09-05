@@ -1,2 +1,25 @@
-<p>home-page works!</p>
-<p>hello {{user?.username}}</p>
+<h2>hello {{user?.username}}</h2>
+
+<h1>{{title}}</h1>
+
+<div>
+    <b>Search for gif:</b> <input type="search" placeholder="enter key words here..." [(ngModel)]="searchWord"/>
+    <button (click)="goSearch()">Go...</button>
+</div>
+
+<br/>
+
+<div>
+    <div *ngIf="message">
+        <h6>{{message}}</h6>
+    </div>
+    <div *ngIf="isValid">
+        <h3>GIF result</h3>
+        <div *ngFor="let g of gifsResult | paginate: { itemsPerPage: 10, currentPage: page }">
+            <app-gif [imageUrl]="g.images.original.url"></app-gif>
+        </div>
+        <div *ngIf="searchWord">
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
