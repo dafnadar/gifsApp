@@ -7,11 +7,9 @@ import { User } from '../models/user';
 export class UserService {
 
   users: User[] = [];
-  //correntUser?: User;
 
   constructor() {
     this.users = JSON.parse(localStorage.getItem('users')!) || [];
-    // this.correntUser = JSON.parse(localStorage.getItem('users')!)
   }
 
   getUser(user: User) {
@@ -25,12 +23,14 @@ export class UserService {
     return this.users.find(x => x.id === Number(id));
   }
 
+  // add user to local storage
   addUser(user: User) {  
     this.users.push(user);
     localStorage.setItem('users', JSON.stringify(this.users));
     localStorage.setItem(user.username, JSON.stringify(user))    
   }  
 
+  // add uniqe id to new users
   generateId() {
     return this.users.length+1;
   }

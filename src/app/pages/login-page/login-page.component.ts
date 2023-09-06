@@ -10,7 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  errMessage: string = '';
+  errMessage: string = 'ffff'; // to change
+  is: boolean = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -23,7 +24,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigateByUrl(`${existingUser.id}`);
     }
     else {
-      this.errMessage = 'ggggggggg';
+      this.errMessage = 'ggggggggg'; // to change
     }        
   }
 }

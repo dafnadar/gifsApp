@@ -12,22 +12,19 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePageComponent implements OnInit {
 
   user?: User;
-  title: string = "Welcome to Giphy search engine";
   searchTerm?: string;
-  placeholder: string = this.searchTerm || "enter key words here...";
-  message?: string;
-  isValid: boolean = false;
-  gifsResult: any[] = [];
-  page: number = 1;
-  termFromHistory?: string;
-  href?: string;
+  showMsg: boolean = false;
+  showGifs: boolean = false;
 
+  gifsResult: any[] = [];
+  //historyUrl?: string; // link to history
+  offset!: number;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private gifService: GifService) { 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.checkIfUserExist(params['id']);
       this.searchTerm = (params['term']);
-      this.href = `${this.user?.id}/history`;
+      //this.historyUrl = `${this.user?.id}/history`; // link to history
       if (this.searchTerm) {
         this.getResults(this.searchTerm)
       }
@@ -37,7 +34,7 @@ export class HomePageComponent implements OnInit {
   checkIfUserExist(id: string) {
     this.user = this.userService.getUserById(id);
     if (!this.user) {
-    this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
     }
   }
 
@@ -48,26 +45,36 @@ export class HomePageComponent implements OnInit {
   //if no searchTerm entered show message
   handleSerchButton(){        
     if (this.searchTerm) {
+      this.offset = 0;
       this.getResults(this.searchTerm);      
-      this.setUserHistory();                       
+      this.setUserHistory();
+      this.showGifs = true;                       
     }
     else {
-      this.message = "Please enter your search term"
-      this.isValid = false;
+      this.showMsg = true;
+      this.showGifs = false;                       
     }
-    console.log(this.user);     
+  }
+
+  prevResults() {
+    this.offset -= 10;
+    this.getResults(this.searchTerm!);
+  }
+
+  nextResults() {
+    this.offset += 10;
+    this.getResults(this.searchTerm!);    
   }
 
   //get results from gif service
   getResults(searchTerm: string): void {   
-    this.gifService.getGifs(searchTerm).subscribe((res: any) => {
-      this.gifsResult = res.data as any[]
+    this.gifService.getGifs(searchTerm, this.offset).subscribe((res: any) => {      
+      this.gifsResult = res.data as any[];
     });
-    this.isValid = true;
-    this.message = undefined;
+    this.showMsg = false;
   }
   
-  // update user's history searches
+  // update user's history searches in local storage
   setUserHistory() {
     if (this.user!.historySearches.length > 9) {
       this.user!.historySearches.shift();        

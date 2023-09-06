@@ -11,16 +11,17 @@ import { UserService } from 'src/app/services/user.service';
 export class HistoryPageComponent implements OnInit {
 
   user?: User = new User();
-  id: string = '';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.user = this.userService.getUserById(this.id);     
+      this.user = this.userService.getUserById(params['id']);     
     })
-   }
-
+  }
+  
   ngOnInit(): void {
+    if (!this.user) {
+      console.log("ddddddddddddddddddddddddd");            
+    }
   }
 
   goToHome(term: string): void {

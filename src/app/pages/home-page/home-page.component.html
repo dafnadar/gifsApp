@@ -1,28 +1,27 @@
 <h2>hello {{user?.username}}</h2>
 
-<h1>{{title}}</h1>
+<h1>"Welcome to Giphy search engine"</h1>
 
 <div>
-    <b>Search for gif:</b> <input type="search" placeholder= {{placeholder}} [(ngModel)]="searchTerm"/>
+    <b>Search for gif:</b> <input type="search" [placeholder]="searchTerm ? searchTerm : 'Enter key word here...'" [(ngModel)]="searchTerm"/>
     <button (click)="handleSerchButton()">Go...</button>
 </div>
 
-<a href={{href}}>Searches history...</a>
+<!-- <a href={{historyUrl}}>Searches history...</a> -->
 <button (click)="goToUserHistory()">Go to history...</button>
 
 <br/>
 
 <div>
-    <div *ngIf="message">
-        <h6>{{message}}</h6>
+    <div *ngIf="showMsg">
+        <h3>Please enter your search term</h3>
     </div>
-    <div *ngIf="isValid">
+    <div *ngIf="showGifs">
         <h3>GIF result</h3>
-        <div *ngFor="let g of gifsResult | paginate: { itemsPerPage: 10, currentPage: page }">
+        <div *ngFor="let g of gifsResult">
             <app-gif [imageUrl]="g.images.original.url"></app-gif>
         </div>
-        <div *ngIf="searchTerm">
-            <pagination-controls (pageChange)="page = $event"></pagination-controls>
-        </div>
+        <button (click)="prevResults()" [hidden]="offset===0">previous</button>
+        <button (click)="nextResults()" [hidden]="gifsResult.length<10">next</button>
     </div>
 </div>
