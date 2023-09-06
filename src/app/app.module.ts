@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HistoryPageComponent } from './pages/history-page/history-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SignupPageComponent,
     LoginPageComponent,
     HomePageComponent,
-    FormComponent
+    FormComponent,
+    HistoryPageComponent
   ],
   imports: [
     BrowserModule,

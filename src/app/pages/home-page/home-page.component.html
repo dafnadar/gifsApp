@@ -3,9 +3,12 @@
 <h1>{{title}}</h1>
 
 <div>
-    <b>Search for gif:</b> <input type="search" placeholder="enter key words here..." [(ngModel)]="searchWord"/>
-    <button (click)="goSearch()">Go...</button>
+    <b>Search for gif:</b> <input type="search" placeholder= {{placeholder}} [(ngModel)]="searchTerm"/>
+    <button (click)="handleSerchButton()">Go...</button>
 </div>
+
+<a href={{href}}>Searches history...</a>
+<button (click)="goToUserHistory()">Go to history...</button>
 
 <br/>
 
@@ -18,7 +21,7 @@
         <div *ngFor="let g of gifsResult | paginate: { itemsPerPage: 10, currentPage: page }">
             <app-gif [imageUrl]="g.images.original.url"></app-gif>
         </div>
-        <div *ngIf="searchWord">
+        <div *ngIf="searchTerm">
             <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
     </div>

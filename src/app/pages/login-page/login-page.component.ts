@@ -17,16 +17,13 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(user: User): void {
-    const existingUser = this.userService.getUser(user);    
-    if (existingUser) {
-      console.log(existingUser);
-      
+  onSubmit(user: User): void {      
+    const existingUser = this.userService.getUser(user);
+    if (existingUser) {      
       this.router.navigateByUrl(`${existingUser.id}`);
     }
     else {
       this.errMessage = 'ggggggggg';
     }        
   }
-
 }
