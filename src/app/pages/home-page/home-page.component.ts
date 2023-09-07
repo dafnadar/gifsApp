@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
 
   gifsResult: any[] = [];
   //historyUrl?: string; // link to history
-  offset!: number;
+  offset: number = 0;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private gifService: GifService) { 
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
       if (this.searchTerm) {
         this.getResults(this.searchTerm)
       }
-    })
+    })    
   }
 
   checkIfUserExist(id: string) {
@@ -47,8 +47,7 @@ export class HomePageComponent implements OnInit {
     if (this.searchTerm) {
       this.offset = 0;
       this.getResults(this.searchTerm);      
-      this.setUserHistory();
-      this.showGifs = true;                       
+      this.setUserHistory();                             
     }
     else {
       this.showMsg = true;
@@ -67,11 +66,12 @@ export class HomePageComponent implements OnInit {
   }
 
   //get results from gif service
-  getResults(searchTerm: string): void {   
+  getResults(searchTerm: string): void {       
     this.gifService.getGifs(searchTerm, this.offset).subscribe((res: any) => {      
       this.gifsResult = res.data as any[];
     });
     this.showMsg = false;
+    this.showGifs = true;
   }
   
   // update user's history searches in local storage

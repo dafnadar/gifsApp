@@ -12,6 +12,8 @@ import { FormComponent } from './components/form/form.component';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
+import { HeaderComponent } from './components/header/header.component';
+//import 'bulma/css/bulma.css';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { HistoryPageComponent } from './pages/history-page/history-page.componen
     LoginPageComponent,
     HomePageComponent,
     FormComponent,
-    HistoryPageComponent
+    HistoryPageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,6 @@ import { HistoryPageComponent } from './pages/history-page/history-page.componen
     NgxPaginationModule       
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],  
 })
 export class AppModule { }

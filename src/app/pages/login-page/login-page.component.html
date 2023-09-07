@@ -1,8 +1,10 @@
-<h1>Login</h1>
+<h1 class="title is-2">Log in</h1>
 <app-form (onSubmitEvent)="onSubmit($event)"></app-form>
-
-<div>{{errMessage}}</div>
-
+<br/>
+<div class="message is-danger" *ngIf="!isUserExist">
+    <b>Unknown user</b>
+</div>
+<br/>
 <div>
-    didnt sign...<a href="/signup">signup</a>
+    Not Registered?  <a href="/signup">Sign Up Here </a>
 </div>

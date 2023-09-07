@@ -1,3 +1,18 @@
-<input placeholder="username" [(ngModel)]="user.username"/>
-<input  type="password" placeholder="password" [(ngModel)]="user.password"/>
-<button (click)="onSubmit()">Submit</button>
+
+<div class="box is-size-small">
+    <div class="field">
+        <label class="label">Username: </label>
+        <div class="control">
+            <input class="input is-normal" type="text" placeholder="username" [(ngModel)]="user.username">
+        </div>
+    </div>
+    
+    <div class="field">
+        <label class="label">Password </label>
+        <div class="control">
+            <input class="input" type="password" placeholder="password" [(ngModel)]="user.password">
+        </div>
+    </div>
+    <button class="button is-link" (click)="onSubmit()">Submit</button>
+</div>
+

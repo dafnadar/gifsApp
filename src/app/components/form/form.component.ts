@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit() {    
     this.onSubmitEvent.emit(this.user);
   }
 

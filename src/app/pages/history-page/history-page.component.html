@@ -1,4 +1,18 @@
-<h2>{{user?.username}}'s search history</h2>
-<div *ngFor="let s of user?.historySearches">
-    <a (click)="goToHome(s)">{{s}}</a>
+<app-header [username]="user?.username" [url]="user!.id.toString()"></app-header><br/>
+<h2 class="title is-3 has-text-info" *ngIf="!message">{{user?.username}}'s search history</h2>
+<div *ngIf="message">
+    {{message}}
 </div>
+<div *ngFor="let s of user?.historySearches">
+    <a class="navbar-item has-background-light" (click)="goToHome(s)">{{s}}</a><br/>
+</div>
+
+<article *ngIf="user?.historySearches?.length===0" class="message is-link">
+    <div class="message-header">
+      <p>Alert</p>
+    </div>
+    <div class="message-body">
+        No history searches available.
+        back to <a href={{user?.id}}>home page</a>
+    </div>    
+  </article>

@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HistoryPageComponent implements OnInit {
 
   user?: User = new User();
+  message: string = '';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -20,7 +21,7 @@ export class HistoryPageComponent implements OnInit {
   
   ngOnInit(): void {
     if (!this.user) {
-      console.log("ddddddddddddddddddddddddd");            
+      this.message = 'User not found';
     }
   }
 

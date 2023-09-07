@@ -1,0 +1,8 @@
+.wrapper-results {
+    display: flex;
+    flex-wrap: wrap;    
+}
+
+.search {
+    display: flex;
+}

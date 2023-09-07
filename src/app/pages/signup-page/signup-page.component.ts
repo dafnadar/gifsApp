@@ -16,7 +16,7 @@ export class SignupPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(user: User): void {
+  onSubmit(user: User): void {   
     user.id = this.userService.generateId();
     this.userService.addUser(user);
     this.router.navigateByUrl(`${user.id}`);
