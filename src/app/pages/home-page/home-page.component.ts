@@ -17,8 +17,10 @@ export class HomePageComponent implements OnInit {
   showGifs: boolean = false;
 
   gifsResult: any[] = [];
+  totalResults: any[] = [];
   //historyUrl?: string; // link to history
   offset: number = 0;
+  page: number = 1;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private gifService: GifService) { 
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -27,7 +29,7 @@ export class HomePageComponent implements OnInit {
       //this.historyUrl = `${this.user?.id}/history`; // link to history
       if (this.searchTerm) {
         this.getResults(this.searchTerm)
-      }
+      }            
     })    
   }
 
@@ -46,6 +48,7 @@ export class HomePageComponent implements OnInit {
   handleSerchButton(){        
     if (this.searchTerm) {
       this.offset = 0;
+      this.totalResults = [];
       this.getResults(this.searchTerm);      
       this.setUserHistory();                             
     }
@@ -56,19 +59,23 @@ export class HomePageComponent implements OnInit {
   }
 
   prevResults() {
-    this.offset -= 10;
-    this.getResults(this.searchTerm!);
+    this.page-=1;        
   }
 
   nextResults() {
-    this.offset += 10;
-    this.getResults(this.searchTerm!);    
+    if(!(this.totalResults.length > this.page*10)) {
+      this.offset += 10;
+      this.getResults(this.searchTerm!);          
+    }
+    this.page+=1;    
   }
 
   //get results from gif service
   getResults(searchTerm: string): void {       
     this.gifService.getGifs(searchTerm, this.offset).subscribe((res: any) => {      
       this.gifsResult = res.data as any[];
+      this.totalResults.push(...this.gifsResult);
+      console.log(this.totalResults.length);
     });
     this.showMsg = false;
     this.showGifs = true;
