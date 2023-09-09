@@ -15,10 +15,8 @@ export class HomePageComponent implements OnInit {
   searchTerm?: string;
   showMsg: boolean = false;
   showGifs: boolean = false;
-
   gifsResult: any[] = [];
   totalResults: any[] = [];
-  //historyUrl?: string; // link to history
   offset: number = 0;
   page: number = 1;
 
@@ -26,7 +24,6 @@ export class HomePageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.checkIfUserExist(params['id']);
       this.searchTerm = (params['term']);
-      //this.historyUrl = `${this.user?.id}/history`; // link to history
       if (this.searchTerm) {
         this.getResults(this.searchTerm)
       }            
@@ -58,6 +55,7 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  //set page to previous page number
   prevResults() {
     this.page-=1;        
   }
@@ -70,12 +68,11 @@ export class HomePageComponent implements OnInit {
     this.page+=1;    
   }
 
-  //get results from gif service
+  //get results from gif service and set totalResults array
   getResults(searchTerm: string): void {       
     this.gifService.getGifs(searchTerm, this.offset).subscribe((res: any) => {      
       this.gifsResult = res.data as any[];
       this.totalResults.push(...this.gifsResult);
-      console.log(this.totalResults.length);
     });
     this.showMsg = false;
     this.showGifs = true;

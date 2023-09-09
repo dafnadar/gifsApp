@@ -1,5 +1,5 @@
 <app-header [username]="user?.username" [url]="user!.id.toString()"></app-header><br/>
-<h2 class="title is-3 has-text-info" *ngIf="!message">{{user?.username}}'s search history</h2>
+<h2 class="title is-3 has-text-info" *ngIf="!message">{{user?.username}}'s last search history</h2>
 <div *ngIf="message">
     {{message}}
 </div>

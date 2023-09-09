@@ -12,6 +12,7 @@ export class UserService {
     this.users = JSON.parse(localStorage.getItem('users')!) || [];
   }
 
+  // find user by username and password in localStorage(users array), and return it.
   getUser(user: User) {
     let existUser = this.users
     .find(x => x.username === user.username && x.password === user.password)
@@ -19,7 +20,6 @@ export class UserService {
   }
 
   getUserById(id: string) {
-    //let user = this.users.find(x => x.id === Number(id));
     return this.users.find(x => x.id === Number(id));
   }
 
@@ -36,10 +36,10 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    //update corrent user in local storage
+    // update corrent user in local storage
     localStorage.setItem(user.username, JSON.stringify(user));
 
-    //update users array in local storage
+    // update users array in local storage
     const index = this.users.findIndex(u => u.id === user.id)
     this.users[index] = user;
     localStorage.setItem('users', JSON.stringify(this.users));

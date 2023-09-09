@@ -11,7 +11,7 @@
 <div class="has-text-danger" *ngIf="showMsg">
     <h3>Please enter a search term</h3>
 </div><br/>
-<button class="button is-link is-outlined" (click)="goToUserHistory()">History searches</button>
+<button class="button is-link is-outlined" (click)="goToUserHistory()">Search history</button>
     
 <br/><br/>
 <div *ngIf="showGifs">
@@ -20,17 +20,20 @@
         <div *ngFor="let g of totalResults | paginate: { itemsPerPage: 10, currentPage: page }">
             <app-gif [imageUrl]="g.images.original.url"></app-gif>
         </div>
-    </div>
+    </div><br/>
     <div class="has-text-centered">
+        <div>Page: {{page}}</div><br/>
         <button  class="button is-previous" (click)="prevResults()" [disabled]="page===1">
-            <!-- <i class="fas fa-angle-left"></i>&nbsp;                 -->
+            <!-- <i class="fas fa-arrow-left"></i>                 -->
             <span>previous</span>
         </button>
         <button class="button is-next" (click)="nextResults()" [disabled]="gifsResult.length<10">
             <!-- <span class="icon">
-            <i class="fas fa-angle-right has-text-danger"></i>&nbsp;
+                <i class="fas fa-arrow-right has-text-danger"></i>&nbsp;
             </span> -->
             <span>Next</span>
         </button>
     </div><br/>
 </div>
+
+
