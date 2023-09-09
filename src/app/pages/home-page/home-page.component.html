@@ -1,36 +1,36 @@
 <app-header [username]="user?.username" [url]="user!.id.toString()"></app-header>
 <div class="has-text-centered">        
-    <h1 class="title has-text-info has-text-white" >Welcome to Dafna's gifs search engine</h1>    
+    <h1 class="title has-text-info has-text-white" >Dafna's gifs search engine</h1>    
 </div><br/>
 
-    <h4 class="title is-4">Search for gif:</h4> 
-    <div class="search">
-        <input class="input" type="search" [placeholder]="searchTerm ? searchTerm : 'Enter key words here...'" [(ngModel)]="searchTerm"/>
-        <button class="button is-link is-focused" (click)="handleSerchButton()">Go...</button>
-    </div>
-    <div class="has-text-danger" *ngIf="showMsg">
-        <h3>Please enter a search term</h3>
-    </div><br/>
-    <button class="button is-link is-outlined" (click)="goToUserHistory()">History searches</button><br/>
-<div>
-    <div *ngIf="showGifs">
-        <div><h2 class="title is-4">Results:</h2></div>
-        <div class="wrapper-results">
-            <div *ngFor="let g of totalResults | paginate: { itemsPerPage: 10, currentPage: page }">
-                <app-gif [imageUrl]="g.images.original.url"></app-gif>
-            </div>
+<h4 class="title is-4">Search for gif:</h4> 
+<div class="search">
+    <input class="input" type="search" [placeholder]="searchTerm ? searchTerm : 'Enter key words here...'" [(ngModel)]="searchTerm"/>
+    <button class="button is-link is-focused" (click)="handleSerchButton()">Go...</button>
+</div>
+<div class="has-text-danger" *ngIf="showMsg">
+    <h3>Please enter a search term</h3>
+</div><br/>
+<button class="button is-link is-outlined" (click)="goToUserHistory()">History searches</button>
+    
+<br/><br/>
+<div *ngIf="showGifs">
+    <div><h2 class="title is-4">Results:</h2></div>
+    <div class="wrapper-results">
+        <div *ngFor="let g of totalResults | paginate: { itemsPerPage: 10, currentPage: page }">
+            <app-gif [imageUrl]="g.images.original.url"></app-gif>
         </div>
-        <div class="has-text-centered">
-            <button  class="button is-previous" (click)="prevResults()" [disabled]="page===1">
-                <i class="fas fa-angle-left"></i>&nbsp;                
-                <span>previous</span>
-            </button>
-            <button class="button is-next" (click)="nextResults()" [disabled]="gifsResult.length<10">
-                    <!-- <span class="icon"> -->
-                      <i class="fas fa-angle-right has-text-danger"></i>&nbsp;
-                    <!-- </span> -->
-                    <span>Next</span>
-            </button>
-        </div>        
     </div>
+    <div class="has-text-centered">
+        <button  class="button is-previous" (click)="prevResults()" [disabled]="page===1">
+            <!-- <i class="fas fa-angle-left"></i>&nbsp;                 -->
+            <span>previous</span>
+        </button>
+        <button class="button is-next" (click)="nextResults()" [disabled]="gifsResult.length<10">
+            <!-- <span class="icon">
+            <i class="fas fa-angle-right has-text-danger"></i>&nbsp;
+            </span> -->
+            <span>Next</span>
+        </button>
+    </div><br/>
 </div>

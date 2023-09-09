@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //import 'bulma/css/bulma.css';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule       
+    NgxPaginationModule,
+    FontAwesomeModule       
   ],
   providers: [],
   bootstrap: [AppComponent],  
