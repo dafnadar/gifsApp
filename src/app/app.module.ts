@@ -13,8 +13,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-//import 'bulma/css/bulma.css';
+import { FontAwesomeModule, FaIconLibrary  } from '@fortawesome/angular-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 @NgModule({
   declarations: [
@@ -39,4 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [],
   bootstrap: [AppComponent],  
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faArrowRight, faArrowLeft);  
+  }
+ }

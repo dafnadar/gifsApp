@@ -26,10 +26,16 @@
     <div class="has-text-centered">
         <div>Page: {{page}}</div><br/>
         <button  class="button is-previous" (click)="prevResults()" [disabled]="page===1">
+            <span class="icon">
+                <fa-icon icon="arrow-left"></fa-icon>
+            </span>        
             <span>previous</span>
         </button>
         <button class="button is-next" (click)="nextResults()" [disabled]="gifsResult.length<10">
             <span>Next</span>
+            <span class="icon">
+                <fa-icon icon="arrow-right"></fa-icon>
+            </span>
         </button>
     </div><br/>
 </div>
