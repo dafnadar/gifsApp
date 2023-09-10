@@ -44,4 +44,11 @@ export class UserService {
     this.users[index] = user;
     localStorage.setItem('users', JSON.stringify(this.users));
   }
+
+  // signOut(username: string) {
+  //   // remove user from users array in local storage
+  //   const userIndex = this.users.findIndex(user => user.username === username);
+  //   this.users.splice(userIndex);
+  //   localStorage.setItem('users', JSON.stringify(this.users));    
+  // }
 }
